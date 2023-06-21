@@ -9,8 +9,11 @@
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
 //Andre pinner brukt i programmet
 int fotpin = A3;
-int TMPpin = A2;
+int tiltpin = 9;
 int knappin = 8;
+//Tellere for antall innganger
+int tiltAktiv = 0;
+int lysAktiv = 0;
 //Desse globale variablene kontrollerer skjermen
 int cases = 3;    //Det totale tallet på cases
 int kontroll = 1; //Tallet beskriver hvilken case man er i NÅ
@@ -21,10 +24,11 @@ long intervall = 1000;
 
 
 void setup() {
+  Serial.begin(9600);
   //Setter sensorpinnene som input
   pinMode(knappin, INPUT);
   pinMode(fotpin, INPUT);
-  pinMode(TMPpin, INPUT);
+  pinMode(tiltpin, INPUT);
   //Starter opp skjerm
   if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { // Standard addresse 0x3C for 128x64
     Serial.println(F("Klarte ikke å koble til skjermen"));
@@ -41,7 +45,9 @@ void loop() {
   //Sjekker om knappe trykk er skjedd
   sjekKnapp();
   //Oppdaterer skjermen, bruker finnTemperatur og finnLysstyrke direkte for å unngå dobbeltskriving
-  skjermKontroll(finnTemperatur(),finnLysstyrke());
+  skjermKontroll();
+  //Sjekk sensorer
+  sjekkSensorer();
 }
 
 void sjekKnapp(){
@@ -60,52 +66,47 @@ void sjekKnapp(){
   }
 }
 
-void skjermKontroll(float temperatur, int lysstyrke){
-  //Sjekker om timer 2 er gått ut
-  if((millis()-timer2) > (intervall/2)){
+void skjermKontroll(){
     //Her visest en liten oppstartsmelding på skjermen
     if(kontroll == 1){
       display.clearDisplay();
       display.setCursor(0,10);
-      display.print("Trykk paa knappen for aa rullere");
+      display.print("IDLE");
       display.display();
     }
-    //Dersom kontroll er 2 vil temperatur visast på skjermen
+    //Dersom kontroll er 2 vil tiltinformasjon visest på skjermen
     else if(kontroll == 2){
       display.clearDisplay();
       display.setCursor(0,10);
-      display.print("Temperaturen er: ");
-      display.print(temperatur, 1);
+      display.print("Tiltsensor aktivert: ");
+      display.print(tiltAktiv);
+      display.print(" ganger");
       display.display();
     }
-    //Dersom kontroll er 3 vil lysstyrke visast på skjermen
+    //Dersom kontroll er 3 vil fotoresistorinformasjon visest på skjermen
     else if(kontroll == 3){
       display.clearDisplay();
       display.setCursor(0,10);
-      display.print("Lysstyrken er: ");
-      display.print(lysstyrke);
+      display.print("Fotoresistor aktivert: ");
+      display.print(lysAktiv);
+      display.print(" ganger");
       display.display();
     }
-    //Oppdater timer2
+}
+
+void sjekkSensorer(){
+  Serial.println(analogRead(fotpin));
+  //Timeren er koblet til for å forsikre at en inngang ikke blir registrert som mange
+  //Her kan man eksperimentere med flere timere, ulike intervaller og ulike sensorverdier :)
+  if((millis()-timer2) >(intervall * 10)){
+    //Sjekker om tiltsensoren har blitt aktivert
+    if(digitalRead(tiltpin)==LOW){
+      tiltAktiv += 1;
+    }
+    //Sjekker om det er mye lys i rommet
+    if(analogRead(fotpin) >= 400){
+      lysAktiv += 1;
+    }
     timer2 = millis();
   }
-}
-
-int finnTemperatur(){
-  //Leser av pinnen
-  int read = analogRead(TMPpin);
-  //Utregning baser på datablad
-  float temp = read * (5000/1024.0);
-  temp = (temp-500) /100;
-  //Returnerer temperaturen
-  return temp;
-}
-
-int finnLysstyrke(){
-  //Leser av pinnen
-  int lys = analogRead(fotpin);
-  //Mapper dette som en prosent mellom 0 og 100(NB! bruk gjerne eksperimentelle verdier for din fotoresistor)
-  lys = map(lys,1023,0,0,100);
-  //Returnerer lysstyrken
-  return lys;
 }
