@@ -1,3 +1,18 @@
+/*
+Her er kommandoene du kan bruke i programmet, skriv de i serial monitor
+M_ON: Sett vifte ON
+MOFF: Sett vifte OFF
+MAUT: Sett vifte AUTO
+SECL: Sett vindu CLOSED
+SEOP: Sett vindu OPEN
+SEHA: Sett vindu Half-Open
+SEAT: Sett vindu AUTO
+OLTE: Sett OLED temperatur
+OLLI: Sett OLED light
+OLWI: Sett OLED vindu
+*/
+
+
 //Oppsett av OLED skjerm
 #include <Wire.h>
 #include <Adafruit_GFX.h>
@@ -46,7 +61,6 @@ void setup() {
   Serial.begin(9600);
   //Setup skjerm
   if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { // Standard addresse 0x3C for 128x64
-    Serial.println(F("Klarte ikke å koble til skjermen"));
     for(;;);
   }
   //Setter nye skjerminnstillinger
@@ -62,19 +76,6 @@ void setup() {
   pinMode(fotoPin, INPUT);
   pinMode(tempPin, INPUT);
   pinMode(motorPin, OUTPUT);
-
-  //Informasjon til bruker ved oppstart
-  Serial.println("Her er kommandoene du kan bruke i programmet");
-  Serial.println("M_ON: Sett vifte ON");
-  Serial.println("MOFF: Sett vifte OFF");
-  Serial.println("MAUT: Sett vifte AUTO");
-  Serial.println("SECL: Sett vindu CLOSED");
-  Serial.println("SEOP: Sett vindu OPEN");
-  Serial.println("SEHA: Sett vindu Half-Open");
-  Serial.println("SEAT: Sett vindu AUTO");
-  Serial.println("OLTE: Sett OLED temperatur");
-  Serial.println("OLLI: Sett OLED light");
-  Serial.println("OLWI: Sett OLED vindu");
 }
 
 void loop() {
