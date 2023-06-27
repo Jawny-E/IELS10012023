@@ -1,6 +1,6 @@
 # Kommunikasjonsprotokoller
 
-Er eit applikasjonsnotat laga for (Ingeniørprosjekt - Introduksjon til ESI)-IELS1001. I lag med oppgåveteksten kan ein her finne eksempelkode, og løysingsforslag til oppgåvene i notatet. MERK! Oppgåvene i notatet er lagd for å være opne for tolking, kreativitet og endringar i tematikk, dei skal i grunn kunn gi inspirasjon og anbefalt vansklegheitsgrad. Det er opp til gruppene sjølv å setje sin eigen vanskelgheitsgrad og arbeidsmengde. Løysingsforslaget er derfor nettopp berre det, eit forslag som dekker må/bør delane av oppgåva.
+Er eit applikasjonsnotat laga for (Ingeniørprosjekt - Introduksjon til ESI)-IELS1001. Hovudfokuset i notatet er kommunikasjonsprotokoller med Arduino Uno, men det er òg nokre enkle oppgåver med ADALM2000. I lag med oppgåveteksten kan ein her finne eksempelkode, og løysingsforslag til oppgåvene i notatet. MERK! Oppgåvene i notatet er lagd for å være opne for tolking, kreativitet og endringar i tematikk, dei skal i grunn kunn gi inspirasjon og anbefalt vansklegheitsgrad. Det er opp til gruppene sjølv å setje sin eigen vanskelgheitsgrad og arbeidsmengde. Løysingsforslaget er derfor nettopp berre det, eit forslag som dekker må/bør delane av oppgåva.
 
 ## Bruk
 
