@@ -6,3 +6,8 @@ Er eit applikasjonsnotat laga for (Ingeniørprosjekt - Introduksjon til ESI)-IEL
 
 Notatet er inndelt i ulike kapittel som dekkar kvar sin kommunikasjonsprotokoll UART, I2C og SPI. I samband med kvart kapittel er ein liten Teoridel som dekkar oppsett og introduksjon til dataoverføring med protokollen. Vidare er det lagt opp eksempel, føremålet med desse er å være so enkle som mogleg å følgje sånn at du kan kontrollere om og korleis ting fungerar. Nokre av desse eksempela brukar i tillegg ADALM200. I enden av kvart kapittel(forruten SPI) finner ein ei mindre øvingsoppgåve som bygger på eksempela.
 Til sist er det satt opp ei større oppgåve der føremålet er å bruke mest mogleg av konsepta lært i resten av notatet.  
+
+## Linker
+[Oppgåve 1(UART/lysbryter](https://github.com/Jawny-E/IELS10012023/blob/main/Kommunikasjonsprotokoller/UARToppgave.ino)
+[Oppgåve 2(I2C/overvåknging)]()
+[Oppgåve 3(UART lysbryter)]()
