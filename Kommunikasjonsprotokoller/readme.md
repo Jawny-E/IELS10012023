@@ -9,5 +9,5 @@ Til sist er det satt opp ei større oppgåve der føremålet er å bruke mest mo
 
 ## Linker
 [Oppgåve 1(UART/lysbryter](https://github.com/Jawny-E/IELS10012023/blob/main/Kommunikasjonsprotokoller/UARToppgave.ino)
-[Oppgåve 2(I2C/overvåknging)]()
-[Oppgåve 3(UART lysbryter)]()
+[Oppgåve 2(I2C/overvåknging)](https://github.com/Jawny-E/IELS10012023/blob/main/Kommunikasjonsprotokoller/I2Coppgave.ino)
+[Oppgåve 3(Drivhus)](https://github.com/Jawny-E/IELS10012023/blob/main/Kommunikasjonsprotokoller/ArnesDrivhus.ino)
